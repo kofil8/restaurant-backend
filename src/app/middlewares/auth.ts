@@ -13,11 +13,13 @@ const auth = (...roles: string[]) => {
     next: NextFunction,
   ) => {
     try {
-      const token = req.headers.authorization;
+      const authHeader = req.headers.authorization;
 
-      if (!token) {
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
       }
+
+      const token = authHeader.split(' ')[1];
 
       const verifiedUser = jwtHelpers.verifyToken(
         token,
@@ -37,14 +39,6 @@ const auth = (...roles: string[]) => {
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
       }
-
-      // if (user.isDeleted == true) {
-      //   throw new ApiError(httpStatus.BAD_REQUEST, "This user is deleted ! ");
-      // }
-
-      // if (user.status === status.BLOCKED) {
-      //   throw new ApiError(httpStatus.FORBIDDEN, 'Your account is blocked!');
-      // }
 
       req.user = verifiedUser as JwtPayload;
 

@@ -1,8 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-const buildSearchFilter = (
-  searchTerm: string,
-): Prisma.PostWhereInput | object => {
+const buildSearchFilter = (searchTerm: string): object => {
   if (!searchTerm) {
     return {};
   }

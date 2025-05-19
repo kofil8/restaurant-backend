@@ -12,8 +12,8 @@ interface CustomJwtPayload extends JwtPayload {
 const generateToken = (
   payload: CustomJwtPayload,
   secret: Secret,
-  expiresIn: string = '1d',
-  algorithm: SignOptions['algorithm'] = 'HS256',
+  expiresIn: SignOptions['expiresIn'] = '1d',
+  algorithm: jwt.Algorithm = 'HS256',
 ): string => {
   return jwt.sign(payload, secret, { algorithm, expiresIn });
 };
