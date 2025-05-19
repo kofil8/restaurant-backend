@@ -7,12 +7,11 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/server.js",
-    "test": "npm run -- dev ",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "watch-prisma": "chokidar 'prisma/schema.prisma' -c 'npx prisma db push",
-    "build": "tsc",
-    "postinstall": "prisma generate",
+    "start": "node ./dist/server.js",
+    "build": "tsc && prisma generate",
+    "postinstall": "npm run build",
+    "watch-prisma": "chokidar 'prisma/schema.prisma' -c 'npx prisma db push'",
     "schema-bodlaichi": "npm run  postinstall",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
@@ -51,9 +50,10 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "prisma": "^6.5.0",
     "@aws-sdk/client-s3": "^3.758.0",
     "@faker-js/faker": "^9.8.0",
-    "@prisma/client": "^6.5.0",
     "ajv": "^8.17.1",
     "aws-sdk": "^2.1692.0",
     "bcrypt": "^5.1.1",

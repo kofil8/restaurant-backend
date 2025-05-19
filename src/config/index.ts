@@ -20,7 +20,7 @@ export default {
   aws_region: process.env.AWS_REGION,
   aws_bucket: process.env.AWS_BUCKET,
   super_admin_name: process.env.SUPER_ADMIN_NAME,
-  super_admin_email: process.env.SUPER_ADMIN_EMAIL,
+  super_admin_email: process.env.SUPER_ADMIN_EMAIL as string,
   super_admin_password: process.env.SUPER_ADMIN_PASSWORD,
   super_admin_phone: process.env.SUPER_ADMIN_PHONE,
   port: process.env.PORT || 9001,
