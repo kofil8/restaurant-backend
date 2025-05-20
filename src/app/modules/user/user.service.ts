@@ -49,8 +49,6 @@ const registerUserIntoDB = async (file: any, payload: any) => {
         role: parsedPayload.role,
         isVerified: false,
         phoneNumber: parsedPayload.phoneNumber,
-        latitude: parsedPayload.latitude,
-        longitude: parsedPayload.longitude,
       },
     });
 

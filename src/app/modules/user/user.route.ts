@@ -69,9 +69,4 @@ router.post(
   UserControllers.ResetOtpVerify,
 );
 
-//live location
-router.patch('/update-location', auth(), UserControllers.updateLocation);
-
-router.get('/nearby-users', auth(), UserControllers.getNearByUsers);
-
 export const UserRouters = router;
